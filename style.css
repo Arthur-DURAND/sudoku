@@ -1,0 +1,83 @@
+html {
+    background-color: #bcc9d9;
+}
+
+#mainTitle {
+    text-align: center;
+    color:#56203d;
+}
+
+#sudokuGrid input {
+    height: 3ch;
+    width: 3ch;
+    text-align: center;
+    font-size: x-large;
+    background-color: #f0E7d8;
+    border: 0px solid #9f191f;
+    outline: 0;
+    transition: box-shadow 0.4s;
+}
+
+#sudokuGrid input:focus {
+    box-shadow: inset 2px 2px #56203d;
+}
+
+#sudokuGrid div:not(.row1):not(.row4):not(.row7) > input {
+    border-top-width: 3px;
+}
+#sudokuGrid div > input:not(:first-child) {
+    border-left-width: 3px;
+}
+
+#sudokuGrid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boxRow {
+    display:flex;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+}
+
+.line {
+    background-color: #56203d;
+    min-width: 5px;
+    min-height: 5px;
+}
+
+#bottomButtons {
+    width: 100%; 
+    display: flex;    
+}
+
+#bottomButtons button {
+    font-size: large;
+    padding: 10px;
+    background-color: #f0E7d8;
+    border-color: #56203d;
+    color: #56203d;
+    border-radius: 4px;
+    margin: 50px
+}
+
+#bottomButtons button:first-child {
+    margin-left: auto; 
+}
+
+#bottomButtons button:last-child {
+    margin-right:auto  
+}
+
+.valid-value {
+    color: #56203d;
+}
+
+.invalid-value {
+    color: #9f191f;
+    background-color: color-mix(in lch, #f0E7d8,#9f191f 40%)!important;
+}

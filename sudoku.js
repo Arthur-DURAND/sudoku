@@ -2,19 +2,27 @@ const url = new URL(window.location.href);
 const grid = url.searchParams.get("grid");
 
 const inputEls = document.getElementsByTagName("input")
-for(let inputEl of inputEls){
-    const value = grid[(parseInt(inputEl.dataset.row)-1) * 9 + parseInt(inputEl.dataset.column) - 1]
-    if(!value || value == '*'){
-        inputEl.value = ''
-    } else {
-        inputEl.value = value
+init()
+function init() {
+    for(let inputEl of inputEls){
+        const value = grid[(parseInt(inputEl.dataset.row)-1) * 9 + parseInt(inputEl.dataset.column) - 1]
+        if(!value || value == '*'){
+            inputEl.value = ''
+        } else {
+            inputEl.value = value
+        }
+        inputEl.classList.add("valid-value")
+        inputEl.classList.remove("invalid-value")
+        
     }
-    inputEl.classList.add("valid-value")
+}
+for(let inputEl of inputEls){
     inputEl.addEventListener("input", inputListener)
 }
 
+
 function inputListener() {
-    let figures = ['0','1','2','3','4','5','6','7','8','9']
+    let figures = ['1','2','3','4','5','6','7','8','9']
     this.classList.remove("valid-value")
     this.classList.remove("invalid-value")
     // Valid input
@@ -64,11 +72,9 @@ function inputListener() {
     this.classList.add("valid-value")
 }
 
-const clearButtonEl = document.getElementById("clearButton")
-clearButtonEl.addEventListener("click", () => {
-    for(let inputEl of inputEls){
-        inputEl.value = ''
-    }
+const resetButtonEl = document.getElementById("resetButton")
+resetButtonEl.addEventListener("click", () => {
+    init()
 })
 
 function replaceChar(string, index, replacement) {

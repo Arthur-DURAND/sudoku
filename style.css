@@ -2,6 +2,36 @@ html {
     background-color: #bcc9d9;
 }
 
+/* POPUP WRONG KEY */
+#popupWrongKey {
+    position: absolute;
+    display: none;
+    opacity: 0;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgb(126,0,0,0.5);
+    background: radial-gradient(circle, rgba(155, 0, 0, 0.7) 0%, rgba(255, 97, 97, 0.5) 100%);
+}
+#wrongKey {
+    margin:auto;
+    width: 3ch;
+    height: 3ch;
+    box-shadow: 0px 30px 30px rgba(0, 0, 0, .8);
+    color: #ffffff;
+    background: #3b0205;
+    border-radius:20px;
+    text-shadow: 0px 0px 40px #ffffff, 0px 0px 80px #ffffff;
+    text-align: center;
+    font-size:20ch;
+    display: flex;
+}
+#wrongKeyValue {
+    margin:auto;
+    padding-bottom: 5px;
+}
+
 #mainTitle {
     text-align: center;
     color:#56203d;

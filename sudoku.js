@@ -72,6 +72,33 @@ function inputListener() {
     this.classList.add("valid-value")
 }
 
+let wrongKeyValueEl = document.getElementById("wrongKeyValue");
+let popupWrongKeyEl = document.getElementById("popupWrongKey")
+let timer;
+document.addEventListener('keypress',function (event) {
+    let figures = ['1','2','3','4','5','6','7','8','9']
+    if (figures.includes(event.key)) {
+        console.log(event.key);
+    } else {
+        wrongKeyValueEl.textContent = event.key == ' ' ? '␣' : event.key
+        let opacity = 0
+        let direction = 1;
+        popupWrongKeyEl.style.display = 'flex';
+        clearInterval(timer);
+        timer = setInterval(function () {
+            if (opacity > 110 && direction == 1){
+                direction = -1
+            } else if(opacity < 5 && direction == -1){
+                clearInterval(timer);
+                popupWrongKeyEl.style.display = 'none';
+            }
+            popupWrongKeyEl.style.opacity = opacity / 100.;
+            popupWrongKeyEl.style.filter = 'alpha(opacity=' + opacity + ")";
+            opacity += (20./Math.sqrt(opacity+1)) * direction;
+        }, 10);
+    }
+})
+
 const resetButtonEl = document.getElementById("resetButton")
 resetButtonEl.addEventListener("click", () => {
     init()

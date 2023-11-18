@@ -13,6 +13,29 @@ let shiftReleaseTime;
 let wrongKeyValueEl = document.getElementById("wrongKeyValue");
 let popupWrongKeyEl = document.getElementById("popupWrongKey")
 let timer;
+
+init()
+function init(){
+    const cellEls = document.querySelectorAll("div.cell")
+    for(let i=0 ; i<cellEls.length ; i++){
+        const cellEl = cellEls[i]
+        if(cellEl){
+            const value = grid[(parseInt(cellEl.dataset.row)-1) * 9 + parseInt(cellEl.dataset.column) - 1]
+            const mainCellEl = cellEl.getElementsByClassName("main")
+            if(mainCellEl && mainCellEl.length > 0 && mainCellEl[0]){
+                if(!value || value == '*'){
+                    mainCellEl[0].textContent = ''
+                } else {
+                    mainCellEl[0].textContent = value
+                    mainCellEl[0].parentElement.classList.add("initial-value")
+                }
+                mainCellEl[0].parentElement.classList.add("valid-value")
+                mainCellEl[0].parentElement.classList.remove("invalid-value")
+            }
+        }
+    }
+}
+
 document.addEventListener('keydown',function (event) {
 
     let isShiftPressed = (Date.now() - shiftReleaseTime) < 50
@@ -39,7 +62,7 @@ document.addEventListener('keydown',function (event) {
                 actualFigure = shiftFiguresKey.indexOf(event.key) + 1
             }
             const cellEl = document.querySelector("div.cell[data-column='"+selectedCell[i].column+"'][data-row='"+selectedCell[i].row+"']")
-            if(cellEl){
+            if(cellEl && !cellEl.classList.contains("initial-value")){
                 if(currentTypingMode == typingModes.Main && !isShiftPressed){
                     const mainEls = cellEl.getElementsByClassName("main")
                     if(mainEls && mainEls.length > 0 && mainEls[0]){

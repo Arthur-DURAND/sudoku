@@ -32,12 +32,16 @@ html {
     padding-bottom: 5px;
 }
 
+
+
+
 #mainTitle {
     text-align: center;
     color:#56203d;
 }
 
-#sudokuGrid input {
+
+#sudokuGrid div.cell {
     height: 3ch;
     width: 3ch;
     text-align: center;
@@ -46,16 +50,19 @@ html {
     border: 0px solid #9f191f;
     outline: 0;
     transition: box-shadow 0.4s;
+    display: flex;
+    flex-direction: column;
 }
 
-#sudokuGrid input:focus {
+/* Not a button anymore. Remove ? */
+#sudokuGrid div.cell:focus {
     box-shadow: inset 2px 2px #56203d;
 }
 
-#sudokuGrid div:not(.row1):not(.row4):not(.row7) > input {
+#sudokuGrid div:not(.row1):not(.row4):not(.row7) > div.cell {
     border-top-width: 3px;
 }
-#sudokuGrid div > input:not(:first-child) {
+#sudokuGrid div > div.cell:not(:first-child) {
     border-left-width: 3px;
 }
 
@@ -80,26 +87,76 @@ html {
     min-height: 5px;
 }
 
-#bottomButtons {
+.row {
+    display: flex;
+}
+
+.cell.focused {
+    background-color: #56203d94!important;
+}
+
+#bottomButtons, #buttonsTypingModes {
     width: 100%; 
     display: flex;    
 }
 
-#bottomButtons button {
+#bottomButtons button, #buttonsTypingModes button {
     font-size: large;
     padding: 10px;
     background-color: #f0E7d8;
     border-color: #56203d;
     color: #56203d;
     border-radius: 4px;
-    margin: 50px
 }
 
-#bottomButtons button:first-child {
+#buttonsTypingModes button {
+    margin: 15px;
+}
+
+#bottomButtons button {
+    margin: 15px;
+    margin-top: 0px;
+}
+
+button:hover {
+    background-color: #9f191f!important;
+}
+
+button:active {
+    background-color: #3b0205!important;
+}
+
+.active-button {
+    background-color: #56203d!important;
+}
+
+.main {
+
+}
+
+.hidden {
+    display: none;
+}
+
+.upper-note {
+    font-size: x-small;
+    text-align: left;
+    position: absolute;
+}
+
+.middle-note {
+    font-size: x-small;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+#bottomButtons button:first-child, #buttonsTypingModes button:first-child {
     margin-left: auto; 
 }
 
-#bottomButtons button:last-child {
+#bottomButtons button:last-child, #buttonsTypingModes button:last-child {
     margin-right:auto  
 }
 
